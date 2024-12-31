@@ -111,10 +111,17 @@ def reflect_on_summary(state: SummaryState):
         {"role": "user", "content": f"Identify a knowledge gap and generate a follow-up web search query based on our existing knowledge: {state.running_summary}"}
     ]
     
-    result = get_completion(messages)
-    follow_up_query = json.loads(result.content)
-
-    return {"search_query": follow_up_query['follow_up_query']}
+    result = get_completion(messages, json_mode=True)  # Add json_mode=True parameter
+    
+    try:
+        # Try to parse the JSON response
+        follow_up_query = json.loads(result.content)
+        return {"search_query": follow_up_query['follow_up_query']}
+    except (json.JSONDecodeError, KeyError) as e:
+        # Fallback: if JSON parsing fails or key is missing, use the raw content
+        print(f"Warning: Failed to parse JSON response: {e}")
+        # Return a default query that's safe but indicates the error
+        return {"search_query": f"More information about {state.research_topic}"}
 
 def finalize_summary(state: SummaryState):
     """Finalize the summary"""
