@@ -49,9 +49,22 @@ def generate_query(state: SummaryState):
         return {"search_query": result.content.strip()}
 
 def web_research(state: SummaryState):
-    """Gather information from the web"""
+    """Gather information from the vector store instead of web"""
     
-    search_results = tavily_search(state.search_query, include_raw_content=True, max_results=1)
+    # Get relevant documents from vector store
+    results = rag_manager.retrieve_relevant_context(state.search_query, k=1)
+    
+    # Format the results similar to web search results
+    formatted_results = []
+    for doc in results:
+        formatted_result = {
+            "title": "Document Chunk",
+            "url": "local://vector-store",
+            "content": doc.page_content
+        }
+        formatted_results.append(formatted_result)
+    
+    search_results = {"results": formatted_results}
     
     search_str = deduplicate_and_format_sources(search_results, max_tokens_per_source=1000)
     return {
