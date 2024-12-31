@@ -1,11 +1,14 @@
 {
-    "dockerfile_lines": [],
-    "graphs": {
-      "research_rabbit": "./src/research_rabbit/research_rabbit.py:graph"
-    },
-    "python_version": "3.11",
-    "env": "./.env",
-    "dependencies": [
-      "."
-    ]
-  }
+  "dockerfile_lines": [],
+  "graphs": {
+    "research_rabbit": "./src/research_rabbit/research_rabbit.py:graph"
+  },
+  "env": [
+    "TAVILY_API_KEY",
+    "DEEPSEEK_API_KEY"
+  ],
+  "python_version": "3.11",
+  "dependencies": [
+    "."
+  ]
+}

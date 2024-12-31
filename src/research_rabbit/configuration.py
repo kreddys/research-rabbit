@@ -10,7 +10,8 @@ from dataclasses import dataclass
 class Configuration:
     """The configurable fields for the research assistant."""
     max_web_research_loops: int = 3
-    local_llm: str = "llama3.2"
+    deepseek_api_key: str = field(default_factory=lambda: os.getenv("DEEPSEEK_API_KEY"))
+    deepseek_base_url: str = "https://api.deepseek.com/v1"
 
     @classmethod
     def from_runnable_config(
