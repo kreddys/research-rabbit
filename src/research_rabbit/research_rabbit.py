@@ -5,11 +5,15 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.graph import START, END, StateGraph
 from openai import OpenAI
+from research_rabbit.rag import RAGManager
 
 from research_rabbit.configuration import Configuration
 from research_rabbit.utils import deduplicate_and_format_sources, tavily_search, format_sources
 from research_rabbit.state import SummaryState, SummaryStateInput, SummaryStateOutput
 from research_rabbit.prompts import query_writer_instructions, summarizer_instructions, reflection_instructions
+
+# Initialize RAGManager globally
+rag_manager = RAGManager()
 
 # Initialize OpenAI client with DeepSeek configuration
 config = Configuration()
