@@ -33,4 +33,3 @@ venv/
 
 # Chroma DB
 chroma_db/
-chroma_db/chroma.sqlite3
