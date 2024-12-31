@@ -15,10 +15,12 @@ dependencies = [
     "sentence-transformers",
     "chromadb<0.6.0",
     "unstructured",
-    "langchain-chroma",
+    "langchain-chroma>=0.1.0",
     "tokenizers>=0.21.0",
     "transformers>=4.47.1",
     "python-magic",
+    "langchain-huggingface",
+    "unstructured[pdf]",
 ]
 
 [project.optional-dependencies]

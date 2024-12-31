@@ -40,7 +40,6 @@ class RAGManager:
             splits = text_splitter.split_documents(documents)
             
             self.vector_store.add_documents(splits)
-            self.vector_store.persist()
             
             print(f"Successfully uploaded {len(splits)} document chunks from {directory_path}")
             return len(splits)
