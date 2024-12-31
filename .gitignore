@@ -27,3 +27,6 @@ dist/
 
 # Local configuration files
 *.local
+
+# Virtual Environment
+venv/
