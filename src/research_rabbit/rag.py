@@ -2,14 +2,14 @@
 
 from langchain_community.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
 import os
 
 class RAGManager:
     def __init__(self, persist_directory="./chroma_db"):
         self.persist_directory = persist_directory
-        self.embeddings = HuggingFaceEmbeddings()
+        self.embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
         
         # Initialize vector store
         if os.path.exists(persist_directory):

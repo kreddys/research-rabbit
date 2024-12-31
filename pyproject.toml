@@ -13,8 +13,12 @@ dependencies = [
     "openai>=1.0.0",
     "torch",
     "sentence-transformers",
-    "chromadb",
+    "chromadb<0.6.0",
     "unstructured",
+    "langchain-chroma",
+    "tokenizers>=0.21.0",
+    "transformers>=4.47.1",
+    "python-magic",
 ]
 
 [project.optional-dependencies]
